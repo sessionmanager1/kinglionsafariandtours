@@ -328,6 +328,27 @@
     font-size:.8rem; opacity:.65;
   }
 
+  /* ---------- FEES TABLE ---------- */
+  .fees-table{
+    max-width:640px; margin:0 auto; border-radius:16px; overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .fees-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.1rem 1.6rem; background:var(--white);
+    border-bottom:1px solid var(--line);
+  }
+  .fees-row:last-child{ border-bottom:none; }
+  .fees-row.head{
+    background:var(--red-deep); color:var(--white);
+    font-family:'Space Mono', monospace; font-size:.72rem;
+    letter-spacing:.14em; text-transform:uppercase;
+  }
+  .fees-category{ font-weight:500; }
+  .fees-price{ font-family:'Fraunces', serif; font-weight:600; color:var(--red-bright); }
+  .fees-row.head .fees-price{ color:var(--white); }
+  .fees-note{ text-align:center; margin-top:1.1rem; color:var(--charcoal-70); font-size:.85rem; }
+
   .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
 </style>
@@ -453,6 +474,26 @@
       <button class="car-btn car-next" aria-label="Next image">›</button>
       <div class="car-dots"></div>
     </div>
+  </div>
+</section>
+
+<div class="horizon"><span class="sun"></span></div>
+
+<!-- GAME FEES -->
+<section id="fees">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <p class="eyebrow" style="justify-content:center;">Know Before You Go</p>
+      <h2>Game Fees and Game Drives</h2>
+      <p>Maasai Mara park entry rates, so you can plan your trip with no surprises.</p>
+    </div>
+    <div class="fees-table">
+      <div class="fees-row head"><span>Category</span><span>Rate</span></div>
+      <div class="fees-row"><span class="fees-category">NRA — High Season</span><span class="fees-price">USD 200</span></div>
+      <div class="fees-row"><span class="fees-category">NRA — Low Season</span><span class="fees-price">USD 100</span></div>
+      <div class="fees-row"><span class="fees-category">NRC</span><span class="fees-price">USD 50</span></div>
+    </div>
+    <p class="fees-note">NRA: Non-Resident Adult &middot; NRC: Non-Resident Child</p>
   </div>
 </section>
 
