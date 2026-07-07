@@ -351,6 +351,73 @@
 
   .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- WHY CHOOSE US TRIGGER ---------- */
+  nav.main-nav #whyBtn{ border:none; cursor:pointer; font-family:'Work Sans', sans-serif; }
+  @media(max-width:980px){
+    nav.main-nav #whyBtn{ margin:1rem 1.5rem; align-self:flex-start; }
+  }
+
+  /* ---------- WHY CHOOSE US MODAL ---------- */
+  .why-overlay{
+    position:fixed; inset:0; z-index:3000;
+    background:rgba(36,26,21,.78); backdrop-filter:blur(3px);
+    display:none; align-items:flex-start; justify-content:center;
+    padding:3rem 1.2rem; overflow-y:auto;
+  }
+  .why-overlay.open{ display:flex; }
+  .why-modal{
+    position:relative; background:var(--white); width:100%; max-width:840px;
+    margin:auto; border-radius:22px; box-shadow:0 30px 70px rgba(0,0,0,.45);
+  }
+  .why-close{
+    position:absolute; top:16px; right:16px; z-index:2;
+    width:42px; height:42px; border-radius:50%; border:none; cursor:pointer;
+    background:var(--red-deep); color:var(--white); font-size:1.4rem; line-height:1;
+  }
+  .why-close:hover{ background:var(--red-bright); }
+  .why-scroll{ max-height:85vh; overflow-y:auto; padding:2.8rem 2.2rem 3rem; }
+  .why-masthead{ text-align:center; margin-bottom:2.4rem; padding-bottom:1.7rem; border-bottom:1px solid var(--line); }
+  .why-masthead .eyebrow{ justify-content:center; }
+  .why-masthead h2{ font-size:clamp(1.6rem,3.2vw,2.3rem); margin-top:.6rem; }
+  .why-block{ margin-bottom:2.7rem; }
+  .why-block:last-child{ margin-bottom:0; }
+  .why-block h3{ font-size:1.4rem; margin:.3rem 0 .9rem; color:var(--red-deep); }
+  .why-block h4{
+    font-family:'Space Mono',monospace; font-size:.76rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--red-bright); margin:1.2rem 0 .6rem;
+  }
+  .why-block p{ color:var(--charcoal-70); margin-bottom:.8rem; }
+  .why-tag{
+    font-family:'Space Mono',monospace; font-size:.68rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--red-bright); margin-bottom:.6rem; display:block;
+  }
+  .why-em{ font-family:'Fraunces',serif; font-weight:600; font-size:1.12rem; margin-bottom:1.3rem; }
+  .why-cta-row{ display:flex; gap:1rem; flex-wrap:wrap; }
+  .why-ghost{ border-color:var(--red-deep) !important; color:var(--red-deep) !important; }
+  .why-ghost:hover{ background:rgba(124,16,24,.08) !important; }
+  .why-check{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:.7rem 1.3rem; }
+  .why-check li{ color:var(--charcoal-70); position:relative; padding-left:1.6rem; }
+  .why-check li::before{ content:"✔"; position:absolute; left:0; color:var(--red-bright); font-weight:700; }
+  @media(max-width:600px){ .why-check{ grid-template-columns:1fr; } }
+  .why-list{ list-style:none; }
+  .why-list li{ color:var(--charcoal-70); padding:.32rem 0; border-bottom:1px dashed var(--line); }
+  .why-list li:last-child{ border-bottom:none; }
+  .why-dest-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0 1.8rem; }
+  @media(max-width:600px){ .why-dest-grid{ grid-template-columns:1fr; } }
+  .why-pkg-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+  @media(max-width:600px){ .why-pkg-grid{ grid-template-columns:1fr; } }
+  .why-pkg{ background:var(--ivory); border-radius:12px; padding:1rem 1.2rem; }
+  .why-pkg strong{ font-family:'Fraunces',serif; display:block; margin-bottom:.3rem; color:var(--charcoal); }
+  .why-pkg span{ font-size:.88rem; color:var(--charcoal-70); }
+  .why-tags{ display:flex; flex-wrap:wrap; gap:.6rem; }
+  .why-tags span{ background:var(--ivory); padding:.42rem .95rem; border-radius:999px; font-size:.82rem; color:var(--charcoal); }
+  .why-quote{
+    font-family:'Fraunces',serif; font-style:italic; font-size:1.15rem; color:var(--charcoal);
+    border-left:3px solid var(--red-bright); padding-left:1.2rem;
+  }
+  .why-contact-list{ list-style:none; }
+  .why-contact-list li{ color:var(--charcoal-70); padding:.35rem 0; }
 </style>
 </head>
 <body>
@@ -373,6 +440,7 @@
       <a href="#balloon">Balloon Safari</a>
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
+      <button class="wa-btn" id="whyBtn" type="button">★ Why Choose Us</button>
     </nav>
   </div>
 </header>
@@ -577,12 +645,205 @@
   <div class="lightbox-counter" id="lbCounter"></div>
 </div>
 
+<!-- WHY CHOOSE US MODAL -->
+<div class="why-overlay" id="whyOverlay">
+  <div class="why-modal">
+    <button class="why-close" id="whyClose" aria-label="Close">×</button>
+    <div class="why-scroll">
+
+      <div class="why-masthead">
+        <p class="eyebrow">Africa Pearls Adventures</p>
+        <h2>Discover Africa's Hidden Treasures</h2>
+      </div>
+
+      <section class="why-block">
+        <span class="why-tag">Home &middot; Hero Banner</span>
+        <h3>Discover the Heart of Africa</h3>
+        <p>Experience unforgettable safaris, breathtaking landscapes, rich cultures, and authentic wildlife adventures across East Africa.</p>
+        <p class="why-em">Your journey begins here.</p>
+        <div class="why-cta-row">
+          <a class="btn-solid" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20book%20a%20safari%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener">Book Your Safari</a>
+          <a class="btn-ghost why-ghost" href="#sundowner" id="exploreToursLink">Explore Tours</a>
+        </div>
+      </section>
+
+      <section class="why-block">
+        <h3>Welcome to Africa Pearls Adventures</h3>
+        <p>Africa Pearls Adventures is a premier African tour company specializing in unforgettable wildlife safaris, cultural experiences, luxury holidays, family adventures, honeymoon escapes, and tailor-made travel experiences.</p>
+        <p>Our mission is to connect travelers with Africa's most spectacular destinations while supporting conservation and local communities.</p>
+      </section>
+
+      <section class="why-block">
+        <h3>Why Choose Us?</h3>
+        <ul class="why-check">
+          <li>Professional Safari Guides</li>
+          <li>Personalized Travel Experiences</li>
+          <li>Affordable Luxury Packages</li>
+          <li>Responsible Eco-Tourism</li>
+          <li>Safe &amp; Reliable Transport</li>
+          <li>Local Cultural Experiences</li>
+          <li>24/7 Customer Support</li>
+          <li>Excellent Customer Satisfaction</li>
+        </ul>
+      </section>
+
+      <section class="why-block">
+        <h3>Destinations</h3>
+        <div class="why-dest-grid">
+          <div>
+            <h4>Kenya</h4>
+            <ul class="why-list">
+              <li>Maasai Mara National Reserve</li>
+              <li>Amboseli National Park</li>
+              <li>Lake Nakuru National Park</li>
+              <li>Tsavo East &amp; West</li>
+              <li>Samburu National Reserve</li>
+              <li>Aberdare National Park</li>
+              <li>Mount Kenya</li>
+              <li>Diani Beach</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Tanzania</h4>
+            <ul class="why-list">
+              <li>Serengeti National Park</li>
+              <li>Ngorongoro Crater</li>
+              <li>Tarangire National Park</li>
+              <li>Lake Manyara</li>
+              <li>Mount Kilimanjaro</li>
+              <li>Zanzibar</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Uganda</h4>
+            <ul class="why-list">
+              <li>Bwindi Impenetrable Forest</li>
+              <li>Queen Elizabeth National Park</li>
+              <li>Murchison Falls</li>
+              <li>Kibale Forest</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Rwanda</h4>
+            <ul class="why-list">
+              <li>Volcanoes National Park</li>
+              <li>Kigali City</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="why-block">
+        <h3>Our Safari Packages</h3>
+        <div class="why-pkg-grid">
+          <div class="why-pkg"><strong>Big Five Safari</strong><span>Witness Africa's legendary wildlife.</span></div>
+          <div class="why-pkg"><strong>Great Migration Safari</strong><span>Experience one of the world's greatest natural wonders.</span></div>
+          <div class="why-pkg"><strong>Luxury Safari</strong><span>Exclusive lodges, private guides, unforgettable comfort.</span></div>
+          <div class="why-pkg"><strong>Budget Camping Safari</strong><span>Adventure without compromise.</span></div>
+          <div class="why-pkg"><strong>Honeymoon Safari</strong><span>Romantic escapes in Africa's wilderness.</span></div>
+          <div class="why-pkg"><strong>Family Safari</strong><span>Perfect adventures for every generation.</span></div>
+          <div class="why-pkg"><strong>Photography Safari</strong><span>Capture Africa's most iconic wildlife and landscapes.</span></div>
+          <div class="why-pkg"><strong>Cultural Safari</strong><span>Visit Maasai villages and experience authentic traditions.</span></div>
+        </div>
+      </section>
+
+      <section class="why-block">
+        <h3>Experiences</h3>
+        <div class="why-tags">
+          <span>Game Drives</span><span>Walking Safaris</span><span>Balloon Safaris</span>
+          <span>Bird Watching</span><span>Bush Breakfasts</span><span>Sundowners</span>
+          <span>Camping</span><span>Mountain Hiking</span><span>Nature Walks</span>
+          <span>Cultural Visits</span><span>Conservation Tours</span>
+        </div>
+      </section>
+
+      <section class="why-block">
+        <h3>Our Services</h3>
+        <div class="why-tags">
+          <span>Tailor-made Safaris</span><span>Hotel Reservations</span><span>Airport Transfers</span>
+          <span>Luxury Lodge Bookings</span><span>Camping Safaris</span><span>Group Tours</span>
+          <span>Educational Tours</span><span>Corporate Retreats</span><span>Visa Travel Advice</span>
+          <span>Travel Insurance Assistance</span>
+        </div>
+      </section>
+
+      <section class="why-block">
+        <h3>About Us</h3>
+        <h4>Our Story</h4>
+        <p>Africa Pearls Adventures was founded with a vision of showcasing Africa's extraordinary beauty through authentic, sustainable, and memorable travel experiences. We believe every journey should inspire, educate, and create lasting memories while supporting wildlife conservation and empowering local communities.</p>
+        <h4>Our Vision</h4>
+        <p>To become Africa's most trusted safari and travel company.</p>
+        <h4>Our Mission</h4>
+        <p>To deliver exceptional travel experiences while promoting responsible tourism, conservation, and cultural appreciation.</p>
+        <h4>Our Values</h4>
+        <div class="why-tags">
+          <span>Integrity</span><span>Professionalism</span><span>Sustainability</span>
+          <span>Excellence</span><span>Customer Satisfaction</span><span>Respect for Nature</span>
+          <span>Community Empowerment</span>
+        </div>
+      </section>
+
+      <section class="why-block">
+        <h3>Gallery</h3>
+        <div class="why-tags">
+          <span>Wildlife</span><span>Landscapes</span><span>Luxury Camps</span>
+          <span>Cultural Experiences</span><span>Safari Vehicles</span><span>Happy Guests</span>
+        </div>
+      </section>
+
+      <section class="why-block">
+        <h3>Testimonials</h3>
+        <p class="why-quote">"An unforgettable safari! The guides were knowledgeable, the service exceptional, and every detail perfectly organized."</p>
+      </section>
+
+      <section class="why-block">
+        <h3>Conservation</h3>
+        <p>Africa Pearls Adventures proudly supports wildlife conservation, sustainable tourism, and community development across Africa.</p>
+      </section>
+
+      <section class="why-block">
+        <h3>Contact</h3>
+        <ul class="why-contact-list">
+          <li><strong>Africa Pearls Adventures</strong></li>
+          <li>📧 info@africapearlsadventures.com</li>
+          <li>📞 +254 798 279911</li>
+          <li>📞 +254 706 317275</li>
+          <li>📍 Nairobi, Kenya</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</div>
+
 <script>
 /* ---------- Nav toggle ---------- */
 const navToggle = document.getElementById('navToggle');
 const mainNav = document.getElementById('mainNav');
 navToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
 mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
+
+/* ---------- Why Choose Us modal ---------- */
+const whyBtn = document.getElementById('whyBtn');
+const whyOverlay = document.getElementById('whyOverlay');
+const whyClose = document.getElementById('whyClose');
+const exploreToursLink = document.getElementById('exploreToursLink');
+
+function openWhyModal(){
+  whyOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeWhyModal(){
+  whyOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+whyBtn.addEventListener('click', () => { mainNav.classList.remove('open'); openWhyModal(); });
+whyClose.addEventListener('click', closeWhyModal);
+whyOverlay.addEventListener('click', e => { if(e.target === whyOverlay) closeWhyModal(); });
+exploreToursLink.addEventListener('click', closeWhyModal);
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && whyOverlay.classList.contains('open')) closeWhyModal();
+});
 
 /* ---------- Reveal on scroll ---------- */
 const revealEls = document.querySelectorAll('.reveal');
