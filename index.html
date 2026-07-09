@@ -15,11 +15,11 @@
   :root{
     --white:#FFFFFF;
     --ivory:#FBF3E7;
-    --red-deep:#7C1018;
-    --red-bright:#D8232A;
+    --red-deep:#14301F;
+    --red-bright:#C9A227;
     --charcoal:#241A15;
     --charcoal-70: rgba(36,26,21,.7);
-    --line: rgba(124,16,24,.18);
+    --line: rgba(20,48,31,.18);
     --shadow: 0 18px 40px rgba(36,18,14,.16);
   }
 
@@ -52,12 +52,45 @@
 
   :focus-visible{ outline:3px solid var(--red-bright); outline-offset:3px; }
 
+  /* ---------- TOP UTILITY BAR ---------- */
+  .topbar{
+    background:#0B1F16; color:rgba(255,255,255,.82);
+    font-family:'Space Mono', monospace; font-size:.7rem; letter-spacing:.04em;
+  }
+  .topbar-inner{
+    max-width:1280px; margin:0 auto; padding:.45rem 1.5rem;
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  }
+  .topbar-left{ display:flex; gap:1.4rem; flex-wrap:wrap; }
+  .topbar-left span{ display:flex; align-items:center; gap:.4rem; white-space:nowrap; }
+  .topbar-right{ display:flex; gap:.7rem; }
+  .topbar-right a{
+    width:22px; height:22px; border-radius:50%;
+    background:rgba(255,255,255,.12);
+    display:flex; align-items:center; justify-content:center; font-size:.68rem;
+  }
+  .topbar-right a:hover{ background:var(--red-bright); color:var(--charcoal); }
+  @media(max-width:760px){ .topbar-left span:nth-child(2){ display:none; } }
+
+  /* ---------- FLOATING WHATSAPP ---------- */
+  .wa-float{
+    position:fixed; bottom:22px; right:22px; z-index:900;
+    width:56px; height:56px; border-radius:50%;
+    background:#25D366; color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 26px rgba(0,0,0,.3);
+    font-size:1.6rem;
+    transition:transform .18s ease;
+  }
+  .wa-float:hover{ transform:scale(1.08); }
+
   /* ---------- HEADER ---------- */
   header{
     position:sticky; top:0; z-index:500;
-    background:var(--red-deep);
-    color:var(--white);
-    box-shadow:0 4px 18px rgba(0,0,0,.18);
+    background:var(--white);
+    color:var(--red-deep);
+    box-shadow:0 4px 18px rgba(0,0,0,.1);
+    border-bottom:1px solid var(--line);
   }
   .header-inner{
     max-width:1280px; margin:0 auto;
@@ -69,50 +102,51 @@
   .brand-mark{
     width:44px; height:44px; border-radius:50%;
     background:var(--white);
-    border:2px solid rgba(255,255,255,.55);
+    border:2px solid var(--red-bright);
     flex-shrink:0; overflow:hidden;
   }
   .brand-mark img{ width:100%; height:100%; object-fit:cover; object-position:50% 22%; }
-  .brand-text{ line-height:1.1; }
-  .brand-text strong{
-    font-family:'Fraunces', serif; font-size:clamp(.78rem, 2.6vw, 1.12rem); font-weight:700;
-    display:block; letter-spacing:.02em;
-    white-space:nowrap;
-  }
-  .brand-text span{
-    font-family:'Space Mono', monospace; font-size:.62rem;
-    letter-spacing:.18em; text-transform:uppercase; opacity:.8;
-  }
-  nav.main-nav{ display:flex; gap:1.5rem; }
-  nav.main-nav a{
-    font-size:.86rem; font-weight:500; letter-spacing:.02em;
-    padding:.3rem 0; border-bottom:1px solid transparent;
-    white-space:nowrap;
-  }
-  nav.main-nav a:hover{ border-color: rgba(255,255,255,.6); }
   .wa-btn{
     display:flex; align-items:center; gap:.5rem;
-    background:var(--white); color:var(--red-deep);
-    padding:.55rem 1rem; border-radius:999px;
-    font-weight:600; font-size:.84rem;
+    background:linear-gradient(135deg,#E9C46A,#C9A227); color:var(--red-deep);
+    padding:.55rem 1.1rem; border-radius:999px;
+    font-weight:700; font-size:.76rem; letter-spacing:.05em; text-transform:uppercase;
     box-shadow:0 6px 14px rgba(0,0,0,.2);
     flex-shrink:0;
     transition:transform .18s ease;
   }
   .wa-btn:hover{ transform:translateY(-2px); }
   .wa-btn svg{ width:16px; height:16px; fill:var(--red-deep); }
-  .nav-toggle{ display:none; background:none; border:none; color:var(--white); font-size:1.6rem; cursor:pointer; }
+  .brand-text{ line-height:1.1; }
+  .brand-text strong{
+    font-family:'Fraunces', serif; font-size:clamp(.78rem, 2.6vw, 1.12rem); font-weight:700;
+    display:block; letter-spacing:.02em; text-transform:uppercase; color:var(--red-deep);
+    white-space:nowrap;
+  }
+  .brand-text span{
+    font-family:'Space Mono', monospace; font-size:.62rem;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--red-bright); opacity:.95;
+  }
+  nav.main-nav{ display:flex; gap:1.5rem; }
+  nav.main-nav a{
+    font-size:.78rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    padding:.3rem 0; border-bottom:1px solid transparent;
+    white-space:nowrap; color:var(--red-deep);
+  }
+  nav.main-nav a:hover{ border-color: var(--red-bright); color:var(--red-bright); }
+  .nav-toggle{ display:none; background:none; border:none; color:var(--red-deep); font-size:1.6rem; cursor:pointer; }
 
   @media(max-width: 980px){
     nav.main-nav{
       position:absolute; top:100%; left:0; right:0;
-      background:var(--red-deep);
+      background:var(--white);
       flex-direction:column; gap:0;
       max-height:0; overflow:hidden;
       transition:max-height .3s ease;
+      box-shadow:0 12px 20px rgba(0,0,0,.08);
     }
-    nav.main-nav.open{ max-height:420px; }
-    nav.main-nav a{ padding:.9rem 1.5rem; border-bottom:1px solid rgba(255,255,255,.12); }
+    nav.main-nav.open{ max-height:520px; overflow-y:auto; }
+    nav.main-nav a{ padding:.9rem 1.5rem; border-bottom:1px solid var(--line); }
     .nav-toggle{ display:block; }
   }
 
@@ -125,13 +159,26 @@
   }
   .hero img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    opacity:.72; animation:heroZoom 18s ease-in-out infinite alternate;
+    opacity:0; transition:opacity 1s ease;
   }
+  .hero img.active{ opacity:.72; animation:heroZoom 18s ease-in-out infinite alternate; }
   @keyframes heroZoom{ from{transform:scale(1);} to{transform:scale(1.09);} }
   .hero::after{
-    content:""; position:absolute; inset:0;
+    content:""; position:absolute; inset:0; z-index:1;
     background:linear-gradient(180deg, rgba(20,8,6,.15) 0%, rgba(20,8,6,.55) 65%, rgba(20,8,6,.88) 100%);
   }
+  .hero-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:44px; height:44px; border-radius:50%; z-index:3;
+    background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.4);
+    color:var(--white); font-size:1.3rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(2px);
+    transition:background .2s ease;
+  }
+  .hero-arrow:hover{ background:var(--red-bright); border-color:var(--red-bright); }
+  .hero-arrow.prev{ left:18px; } .hero-arrow.next{ right:18px; }
+  @media(max-width:700px){ .hero-arrow{ width:36px; height:36px; } }
   .hero-content{
     position:relative; z-index:2; color:var(--white);
     max-width:1280px; margin:0 auto; width:100%;
@@ -141,7 +188,7 @@
   .hero-content .eyebrow::before{ background:#f2c14e; }
   .hero-content h1{
     font-size:clamp(2.4rem, 6vw, 4.6rem);
-    line-height:1.02; margin:.9rem 0 1rem;
+    line-height:1.02; margin:.9rem 0 1rem; text-transform:uppercase;
     text-shadow:0 4px 22px rgba(0,0,0,.35);
   }
   .hero-content p{
@@ -168,10 +215,10 @@
     background:var(--red-bright); color:var(--white);
     padding:.9rem 1.7rem; border-radius:999px; font-weight:600;
     display:inline-flex; align-items:center; gap:.6rem;
-    box-shadow:0 12px 26px rgba(216,35,42,.4);
+    box-shadow:0 12px 26px rgba(201,162,39,.4);
     transition:transform .18s ease, box-shadow .18s ease;
   }
-  .btn-solid:hover{ transform:translateY(-3px); box-shadow:0 16px 30px rgba(216,35,42,.5); }
+  .btn-solid:hover{ transform:translateY(-3px); box-shadow:0 16px 30px rgba(201,162,39,.5); }
   .btn-ghost{
     border:1.5px solid rgba(255,255,255,.7); color:var(--white);
     padding:.9rem 1.7rem; border-radius:999px; font-weight:600;
@@ -221,13 +268,26 @@
   .frame img{ width:100%; height:100%; object-fit:cover; }
   .frame-tag{
     position:absolute; bottom:14px; left:14px;
-    background:rgba(124,16,24,.88); color:var(--white);
+    background:rgba(20,48,31,.88); color:var(--white);
     font-family:'Space Mono',monospace; font-size:.68rem; letter-spacing:.12em;
     padding:.4rem .8rem; border-radius:999px; text-transform:uppercase;
   }
+  .play-btn{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:68px; height:68px; border-radius:50%;
+    background:rgba(255,255,255,.92); color:var(--red-deep);
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem;
+    box-shadow:0 10px 26px rgba(0,0,0,.3);
+    transition:transform .2s ease;
+  }
+  .play-btn:hover{ transform:translate(-50%,-50%) scale(1.08); }
 
   .section-head{ text-align:center; max-width:640px; margin:0 auto 3rem; }
-  .section-head h2{ font-size:clamp(1.9rem,3.6vw,2.7rem); margin:.7rem 0 .8rem; }
+  .section-head h2{ font-size:clamp(1.9rem,3.6vw,2.7rem); margin:.7rem 0 .8rem; text-transform:uppercase; position:relative; padding-bottom:.9rem; }
+  .section-head h2::after{
+    content:""; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+    width:56px; height:2px; background:var(--red-bright);
+  }
   .section-head p{ color:var(--charcoal-70); }
 
   /* ---------- CAROUSEL ---------- */
@@ -280,7 +340,7 @@
   .gallery-grid .g-item::after{
     content:"⤢"; position:absolute; top:10px; right:10px;
     width:30px; height:30px; border-radius:50%;
-    background:rgba(124,16,24,.85); color:#fff;
+    background:rgba(20,48,31,.85); color:#fff;
     display:flex; align-items:center; justify-content:center; font-size:.9rem;
     opacity:0; transition:opacity .2s ease;
   }
@@ -322,7 +382,7 @@
   .cta-strip p{ opacity:.85; max-width:520px; margin:0 auto 1.8rem; }
 
   /* ---------- FOOTER ---------- */
-  footer{ background:#4C0B10; color:rgba(255,255,255,.88); padding:3.5rem 1.5rem 2rem; }
+  footer{ background:#0B1F16; color:rgba(255,255,255,.88); padding:3.5rem 1.5rem 2rem; }
   .footer-inner{
     max-width:1280px; margin:0 auto;
     display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:2.5rem;
@@ -393,44 +453,52 @@
   @media(max-width:980px){ .explore-grid{ grid-template-columns:repeat(3,1fr); } }
   @media(max-width:600px){ .explore-grid{ grid-template-columns:repeat(2,1fr); gap:12px; } }
 
-  /* ---------- PACKAGE / FEES CARD GRID ---------- */
+  /* ---------- PACKAGE / FEES CARD GRID (image-first) ---------- */
   .pkg-grid{
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:1.2rem; max-width:920px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1.2rem; max-width:1100px; margin:0 auto;
   }
   .pkg-card{
     background:var(--white); border-radius:16px; overflow:hidden;
-    box-shadow:var(--shadow); text-align:center;
-    border-top:4px solid var(--red-bright);
+    box-shadow:var(--shadow); text-align:left;
   }
-  .pkg-card .pkg-top{ background:var(--red-deep); color:var(--white); padding:1.1rem 1rem .9rem; }
-  .pkg-card .pkg-top span{
-    font-family:'Space Mono',monospace; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; opacity:.85;
+  .pkg-card .pkg-media{ position:relative; aspect-ratio:4/3; overflow:hidden; }
+  .pkg-card .pkg-media img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+  .pkg-card:hover .pkg-media img{ transform:scale(1.07); }
+  .pkg-card .pkg-badge{
+    position:absolute; top:12px; left:12px;
+    background:var(--red-bright); color:var(--white);
+    font-family:'Fraunces', serif; font-weight:700; font-size:.95rem;
+    padding:.4rem .9rem; border-radius:999px; box-shadow:0 6px 14px rgba(0,0,0,.25);
   }
-  .pkg-card .pkg-top h3{ font-size:1.1rem; margin-top:.3rem; }
-  .pkg-card .pkg-price{
-    font-family:'Fraunces', serif; font-weight:700; font-size:2rem; color:var(--red-bright);
-    padding:1.2rem 1rem .4rem;
+  .pkg-card .pkg-tag{
+    position:absolute; top:12px; right:12px;
+    background:rgba(20,48,31,.85); color:var(--white);
+    font-family:'Space Mono',monospace; font-size:.64rem; letter-spacing:.1em; text-transform:uppercase;
+    padding:.35rem .7rem; border-radius:999px;
   }
-  .pkg-card .pkg-price small{ font-family:'Work Sans',sans-serif; font-size:.68rem; font-weight:500; color:var(--charcoal-70); display:block; letter-spacing:.06em; text-transform:uppercase; }
+  .pkg-card .pkg-body{ padding:1.1rem 1.2rem 1.3rem; }
+  .pkg-card .pkg-body h3{ font-size:1.05rem; margin-bottom:.4rem; }
+  .pkg-card .pkg-body p{ font-size:.84rem; color:var(--charcoal-70); margin-bottom:1rem; }
   .pkg-card .pkg-btn{
-    display:block; margin:1rem 1.2rem 1.4rem; padding:.7rem 1rem; border-radius:999px;
-    background:var(--ivory); color:var(--red-deep); font-weight:600; font-size:.86rem;
+    display:inline-block; padding:.65rem 1.3rem; border-radius:999px;
+    background:var(--red-bright); color:var(--white); font-weight:700; font-size:.76rem;
+    text-transform:uppercase; letter-spacing:.05em;
   }
-  .pkg-card .pkg-btn:hover{ background:var(--red-bright); color:var(--white); }
+  .pkg-card .pkg-btn:hover{ background:var(--red-deep); color:var(--white); }
   @media(max-width:760px){ .pkg-grid{ grid-template-columns:1fr; } }
 
   /* ---------- FEATURE ICON ROW ---------- */
   .feature-row{
-    display:grid; grid-template-columns:repeat(4, 1fr); gap:1.5rem;
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem 1.5rem;
     max-width:1100px; margin:0 auto;
   }
   .feature-item{ text-align:center; }
   .feature-item .f-icon{
-    width:54px; height:54px; margin:0 auto .8rem; border-radius:50%;
-    background:var(--ivory); color:var(--red-bright);
+    width:56px; height:56px; margin:0 auto .8rem; border-radius:50%;
+    background:var(--white); color:var(--red-deep); border:1.5px solid var(--red-deep);
     display:flex; align-items:center; justify-content:center; font-size:1.3rem;
   }
-  .feature-item h4{ font-size:.86rem; font-weight:600; letter-spacing:.01em; }
+  .feature-item h4{ font-size:.8rem; font-weight:600; letter-spacing:.01em; text-transform:uppercase; }
   @media(max-width:760px){ .feature-row{ grid-template-columns:repeat(2,1fr); } }
 
   .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
@@ -479,7 +547,7 @@
   .why-em{ font-family:'Fraunces',serif; font-weight:600; font-size:1.12rem; margin-bottom:1.3rem; }
   .why-cta-row{ display:flex; gap:1rem; flex-wrap:wrap; }
   .why-ghost{ border-color:var(--red-deep) !important; color:var(--red-deep) !important; }
-  .why-ghost:hover{ background:rgba(124,16,24,.08) !important; }
+  .why-ghost:hover{ background:rgba(20,48,31,.08) !important; }
   .why-check{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:.7rem 1.3rem; }
   .why-check li{ color:var(--charcoal-70); position:relative; padding-left:1.6rem; }
   .why-check li::before{ content:"✔"; position:absolute; left:0; color:var(--red-bright); font-weight:700; }
@@ -506,6 +574,19 @@
 </head>
 <body>
 
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span>📞 +254 798 279 911</span>
+      <span>📧 info@africapearlsadventures.com</span>
+      <span>📍 Nairobi, Kenya</span>
+    </div>
+    <div class="topbar-right">
+      <a href="https://wa.me/+254798279911" target="_blank" rel="noopener" aria-label="WhatsApp">W</a>
+      <a href="mailto:info@africapearlsadventures.com" aria-label="Email">@</a>
+    </div>
+  </div>
+</div>
 <header>
   <div class="header-inner">
     <div class="brand">
@@ -531,8 +612,12 @@
 </header>
 
 <!-- HERO -->
-<section class="hero">
-  <img src="https://i.ibb.co/0pV0wvbR/IMG-20260706-WA0030.jpg" alt="Hot air balloon safari over the Maasai Mara at sunrise">
+<section class="hero" id="heroSlider">
+  <img src="https://i.ibb.co/0pV0wvbR/IMG-20260706-WA0030.jpg" alt="Hot air balloon safari over the Maasai Mara at sunrise" class="active">
+  <img src="https://i.ibb.co/pvLCZ4jv/IMG-20260706-WA0024.jpg" alt="Wildebeest migration crossing the Mara river">
+  <img src="https://i.ibb.co/0pmFSPF2/IMG-20260706-WA0013.jpg" alt="Sundowner over the Maasai Mara at golden hour">
+  <button class="hero-arrow prev" id="heroPrev" aria-label="Previous slide">‹</button>
+  <button class="hero-arrow next" id="heroNext" aria-label="Next slide">›</button>
   <div class="hero-content">
     <button class="btn-why-hero" id="whyHeroBtn" type="button">★ Why You Should Choose Us</button>
     <p class="eyebrow">Maasai Mara &middot; Est. Local Guides</p>
@@ -560,6 +645,7 @@
     <div class="split-media">
       <div class="frame">
         <img src="https://i.ibb.co/4RZQqB7J/IMG-20260706-WA0032.jpg" alt="Wildebeest migration herd in the Maasai Mara">
+        <a class="play-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%27d%20like%20to%20see%20more%20about%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">▶</a>
       </div>
     </div>
   </div>
@@ -616,6 +702,9 @@
           <span class="ex-link">Explore →</span>
         </div>
       </a>
+    </div>
+    <div style="text-align:center; margin-top:2.4rem;">
+      <a class="btn-solid" style="background:var(--red-deep); box-shadow:0 12px 26px rgba(20,48,31,.35);" href="#gallery">View All Photos ⊕</a>
     </div>
   </div>
 </section>
@@ -721,19 +810,40 @@
     </div>
     <div class="pkg-grid">
       <div class="pkg-card">
-        <div class="pkg-top"><span>Peak Season</span><h3>NRA — High Season</h3></div>
-        <div class="pkg-price">$200<small>Non-Resident Adult</small></div>
-        <a class="pkg-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">Enquire →</a>
+        <div class="pkg-media">
+          <img src="https://i.ibb.co/QF4ZK5Bx/IMG-20260706-WA0025.jpg" alt="Maasai Mara game drive, high season" loading="lazy">
+          <span class="pkg-badge">$200</span>
+          <span class="pkg-tag">Peak Season</span>
+        </div>
+        <div class="pkg-body">
+          <h3>NRA — High Season</h3>
+          <p>Non-Resident Adult park entry during the peak migration months.</p>
+          <a class="pkg-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">View Details</a>
+        </div>
       </div>
       <div class="pkg-card">
-        <div class="pkg-top"><span>Off Peak</span><h3>NRA — Low Season</h3></div>
-        <div class="pkg-price">$100<small>Non-Resident Adult</small></div>
-        <a class="pkg-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">Enquire →</a>
+        <div class="pkg-media">
+          <img src="https://i.ibb.co/HDZr0YgL/IMG-20260706-WA0021.jpg" alt="Maasai Mara game drive, low season" loading="lazy">
+          <span class="pkg-badge">$100</span>
+          <span class="pkg-tag">Off Peak</span>
+        </div>
+        <div class="pkg-body">
+          <h3>NRA — Low Season</h3>
+          <p>Non-Resident Adult park entry outside the peak migration window.</p>
+          <a class="pkg-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">View Details</a>
+        </div>
       </div>
       <div class="pkg-card">
-        <div class="pkg-top"><span>All Season</span><h3>NRC</h3></div>
-        <div class="pkg-price">$50<small>Non-Resident Child</small></div>
-        <a class="pkg-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">Enquire →</a>
+        <div class="pkg-media">
+          <img src="https://i.ibb.co/Y7Pk0GVB/IMG-20260706-WA0028.jpg" alt="Maasai Mara wildlife, child rate" loading="lazy">
+          <span class="pkg-badge">$50</span>
+          <span class="pkg-tag">All Season</span>
+        </div>
+        <div class="pkg-body">
+          <h3>NRC</h3>
+          <p>Non-Resident Child park entry, valid all year round.</p>
+          <a class="pkg-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">View Details</a>
+        </div>
       </div>
     </div>
     <p class="fees-note">NRA: Non-Resident Adult &middot; NRC: Non-Resident Child</p>
@@ -767,20 +877,36 @@
   <div class="section-inner reveal">
     <div class="feature-row">
       <div class="feature-item">
-        <div class="f-icon">✔</div>
+        <div class="f-icon">🧭</div>
         <h4>Professional Guides</h4>
       </div>
       <div class="feature-item">
-        <div class="f-icon">✔</div>
+        <div class="f-icon">🎒</div>
+        <h4>Personalized Experiences</h4>
+      </div>
+      <div class="feature-item">
+        <div class="f-icon">🚙</div>
         <h4>Safe &amp; Reliable Transport</h4>
       </div>
       <div class="feature-item">
-        <div class="f-icon">✔</div>
+        <div class="f-icon">💰</div>
+        <h4>Best Price Guarantee</h4>
+      </div>
+      <div class="feature-item">
+        <div class="f-icon">🎧</div>
+        <h4>24/7 Customer Support</h4>
+      </div>
+      <div class="feature-item">
+        <div class="f-icon">🌿</div>
+        <h4>Responsible Eco-Tourism</h4>
+      </div>
+      <div class="feature-item">
+        <div class="f-icon">🏺</div>
         <h4>Local Cultural Experiences</h4>
       </div>
       <div class="feature-item">
-        <div class="f-icon">✔</div>
-        <h4>24/7 Customer Support</h4>
+        <div class="f-icon">⭐</div>
+        <h4>5-Star Guest Satisfaction</h4>
       </div>
     </div>
   </div>
@@ -1012,7 +1138,25 @@
   </div>
 </div>
 
+<a class="wa-float" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20plan%20my%20Maasai%20Mara%20trip%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">✆</a>
+
 <script>
+/* ---------- Hero slider ---------- */
+(function(){
+  const hero = document.getElementById('heroSlider');
+  const imgs = hero.querySelectorAll('img');
+  let cur = 0, timer;
+  function go(i){
+    imgs[cur].classList.remove('active');
+    cur = (i + imgs.length) % imgs.length;
+    imgs[cur].classList.add('active');
+  }
+  function restart(){ clearInterval(timer); timer = setInterval(() => go(cur+1), 6000); }
+  document.getElementById('heroPrev').addEventListener('click', () => { go(cur-1); restart(); });
+  document.getElementById('heroNext').addEventListener('click', () => { go(cur+1); restart(); });
+  restart();
+})();
+
 /* ---------- Nav toggle ---------- */
 const navToggle = document.getElementById('navToggle');
 const mainNav = document.getElementById('mainNav');
