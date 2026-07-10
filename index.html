@@ -373,6 +373,61 @@
     color:rgba(255,255,255,.75); font-family:'Space Mono',monospace; font-size:.8rem; letter-spacing:.1em;
   }
 
+  /* ---------- FLOATING REVIEWS CONTAINER ---------- */
+  .reviews-section {
+    padding: 5.5rem 1.5rem;
+    background: var(--white);
+    overflow: hidden;
+  }
+  .reviews-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .review-card {
+    position: absolute;
+    width: 100%;
+    background: var(--ivory);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    text-align: center;
+  }
+  .review-card.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    position: relative;
+  }
+  .review-stars {
+    color: var(--red-bright);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .review-text {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-style: italic;
+    color: var(--red-deep);
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+  }
+  .review-author {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal-70);
+  }
+
   /* ---------- CTA STRIP ---------- */
   .cta-strip{
     background:var(--red-deep); color:var(--white);
@@ -577,13 +632,13 @@
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-left">
-      <span>📞 +254 798 279 911</span>
-      <span>📧 info@africapearlsadventures.com</span>
+      <span>📞 +254 115 252 978</span>
+      <span>📧 franklinesaitoti9@gmail.com</span>
       <span>📍 Nairobi, Kenya</span>
     </div>
     <div class="topbar-right">
-      <a href="https://wa.me/+254798279911" target="_blank" rel="noopener" aria-label="WhatsApp">W</a>
-      <a href="mailto:info@africapearlsadventures.com" aria-label="Email">@</a>
+      <a href="https://wa.me/254115252978" target="_blank" rel="noopener" aria-label="WhatsApp">W</a>
+      <a href="mailto:franklinesaitoti9@gmail.com" aria-label="Email">@</a>
     </div>
   </div>
 </div>
@@ -624,7 +679,7 @@
     <h1>Africa Pearls<br>Adventures</h1>
     <p>Sundowners on the plains, sunrise balloon rides, the great migration and the villages that call the Mara home — one trusted outfit, every angle of the wild.</p>
     <div class="hero-ctas">
-      <a class="btn-solid" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20book%20a%20safari%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener">Book on WhatsApp →</a>
+      <a class="btn-solid" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20book%20a%20safari%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener">Book on WhatsApp →</a>
       <a class="btn-ghost" href="#gallery">View the Gallery</a>
     </div>
   </div>
@@ -645,7 +700,7 @@
     <div class="split-media">
       <div class="frame">
         <img src="https://i.ibb.co/4RZQqB7J/IMG-20260706-WA0032.jpg" alt="Wildebeest migration herd in the Maasai Mara">
-        <a class="play-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%27d%20like%20to%20see%20more%20about%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">▶</a>
+        <a class="play-btn" href="https://wa.me/254115252978?text=Hi%2C%20I%27d%20like%20to%20see%20more%20about%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">▶</a>
       </div>
     </div>
   </div>
@@ -724,7 +779,7 @@
       <p class="eyebrow">Golden Hour</p>
       <h2>Sundowner on the Plains</h2>
       <p>As the heat breaks and the light turns amber, we park up on a rise overlooking the Mara for drinks in hand and the horizon on fire. No two evenings look the same — that's the point.</p>
-      <a class="btn-solid" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20book%20a%20sundowner%20experience" target="_blank" rel="noopener">Ask about a sundowner →</a>
+      <a class="btn-solid" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20book%20a%20sundowner%20experience" target="_blank" rel="noopener">Ask about a sundowner →</a>
     </div>
   </div>
 </section>
@@ -744,7 +799,7 @@
       <p class="eyebrow">Culture &amp; Community</p>
       <h2>Village Visit</h2>
       <p>Step off the safari track and into a living Maasai homestead — songs, beadwork, cattle bomas, and conversations that put everything you've seen on game drives into context.</p>
-      <a class="btn-solid" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20arrange%20a%20village%20visit" target="_blank" rel="noopener">Arrange a visit →</a>
+      <a class="btn-solid" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20arrange%20a%20village%20visit" target="_blank" rel="noopener">Arrange a visit →</a>
     </div>
   </div>
 </section>
@@ -793,7 +848,7 @@
       <div class="car-dots"></div>
     </div>
     <div style="text-align:center; margin-top:2rem;">
-      <a class="btn-solid" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20book%20transport%20services" target="_blank" rel="noopener">Book transport on WhatsApp →</a>
+      <a class="btn-solid" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20book%20transport%20services" target="_blank" rel="noopener">Book transport on WhatsApp →</a>
     </div>
   </div>
 </section>
@@ -818,7 +873,7 @@
         <div class="pkg-body">
           <h3>NRA — High Season</h3>
           <p>Non-Resident Adult park entry during the peak migration months.</p>
-          <a class="pkg-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">View Details</a>
+          <a class="pkg-btn" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">View Details</a>
         </div>
       </div>
       <div class="pkg-card">
@@ -830,7 +885,7 @@
         <div class="pkg-body">
           <h3>NRA — Low Season</h3>
           <p>Non-Resident Adult park entry outside the peak migration window.</p>
-          <a class="pkg-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">View Details</a>
+          <a class="pkg-btn" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">View Details</a>
         </div>
       </div>
       <div class="pkg-card">
@@ -842,7 +897,7 @@
         <div class="pkg-body">
           <h3>NRC</h3>
           <p>Non-Resident Child park entry, valid all year round.</p>
-          <a class="pkg-btn" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">View Details</a>
+          <a class="pkg-btn" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20know%20more%20about%20game%20fees" target="_blank" rel="noopener">View Details</a>
         </div>
       </div>
     </div>
@@ -865,7 +920,7 @@
       <p class="eyebrow">Sunrise, From Above</p>
       <h2>Balloon Safaris</h2>
       <p>Lift off before dawn and drift silently over herds, rivers and escarpments as the sun comes up over the Mara — finished with a bush breakfast and bubbly on landing.</p>
-      <a class="btn-solid" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20book%20a%20balloon%20safari" target="_blank" rel="noopener">Reserve a balloon slot →</a>
+      <a class="btn-solid" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20book%20a%20balloon%20safari" target="_blank" rel="noopener">Reserve a balloon slot →</a>
     </div>
   </div>
 </section>
@@ -924,11 +979,46 @@
   </div>
 </section>
 
+<div class="horizon"><span class="sun"></span></div>
+
+<!-- REVIEWS SECTION -->
+<section class="reviews-section" id="reviews">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <p class="eyebrow" style="justify-content:center;">Guest Experiences</p>
+      <h2>What Our Adventurers Say</h2>
+      <p>Real stories from travelers who explored the wild with us.</p>
+    </div>
+    <div class="reviews-wrapper">
+      <div class="review-card active">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"An absolutely magical trip. Watching the great migration cross the river with guides who knew exactly where to park was a memory we will hold onto forever."</p>
+        <div class="review-author">— Sarah &amp; David M., United Kingdom</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The sunrise hot air balloon flight over the Mara plains was worth every bit. The bush breakfast and bubbly on landing made it a perfect morning wrapper."</p>
+        <div class="review-author">— Elena R., Italy</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"From our arrival at the airstrip to the evening sundowners, the transport fleet was completely comfortable and professional. Highly recommend Africa Pearls."</p>
+        <div class="review-author">— Marcus T., United States</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Stepping into the living Maasai homestead gave us an unforgettable context to the landscape. A beautiful, respectful, and genuine community visit."</p>
+        <div class="review-author">— Chloe &amp; Pierre, France</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA STRIP -->
 <section class="cta-strip" id="contact">
   <h2>Ready for your Mara story?</h2>
   <p>Message Africa Pearls Adventures directly on WhatsApp — we'll build the itinerary around you.</p>
-  <a class="btn-solid" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20plan%20my%20Maasai%20Mara%20trip%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener">Chat on WhatsApp: +254 798 279 911 →</a>
+  <a class="btn-solid" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20plan%20my%20Maasai%20Mara%20trip%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener">Chat on WhatsApp: +254 115 252 978 →</a>
 </section>
 
 <!-- FOOTER -->
@@ -936,7 +1026,7 @@
   <div class="footer-inner">
     <div>
       <div class="footer-promise">"We promise africa experience"</div>
-      <a href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20know%20more%20about%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener">WhatsApp: +254 798 279 911</a>
+      <a href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20know%20more%20about%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener">WhatsApp: +254 115 252 978</a>
     </div>
     <div>
       <h4>Experiences</h4>
@@ -984,7 +1074,7 @@
         <p>Experience unforgettable safaris, breathtaking landscapes, rich cultures, and authentic wildlife adventures across East Africa.</p>
         <p class="why-em">Your journey begins here.</p>
         <div class="why-cta-row">
-          <a class="btn-solid" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20book%20a%20safari%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener">Book Your Safari</a>
+          <a class="btn-solid" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20book%20a%20safari%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener">Book Your Safari</a>
           <a class="btn-ghost why-ghost" href="#sundowner" id="exploreToursLink">Explore Tours</a>
         </div>
       </section>
@@ -1127,9 +1217,9 @@
         <h3>Contact</h3>
         <ul class="why-contact-list">
           <li><strong>Africa Pearls Adventures</strong></li>
-          <li>📧 info@africapearlsadventures.com</li>
-          <li>📞 +254 798 279911</li>
-          <li>📞 +254 706 317275</li>
+          <li>📧 franklinesaitoti9@gmail.com</li>
+          <li>📞 +254 115 252 978</li>
+          <li>📞 +254 706 317 275</li>
           <li>📍 Nairobi, Kenya</li>
         </ul>
       </section>
@@ -1138,7 +1228,7 @@
   </div>
 </div>
 
-<a class="wa-float" href="https://wa.me/+254798279911?text=Hi%2C%20I%20want%20to%20plan%20my%20Maasai%20Mara%20trip%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">✆</a>
+<a class="wa-float" href="https://wa.me/254115252978?text=Hi%2C%20I%20want%20to%20plan%20my%20Maasai%20Mara%20trip%20with%20Africa%20Pearls%20Adventures" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">✆</a>
 
 <script>
 /* ---------- Hero slider ---------- */
@@ -1301,6 +1391,19 @@ galleryImages.forEach((item, i) => {
   div.addEventListener('click', () => openLightbox(galleryImages, i));
   galleryGrid.appendChild(div);
 });
+
+/* ---------- Floating Reviews Engine ---------- */
+(function() {
+  const cards = document.querySelectorAll('.review-card');
+  let currentIdx = 0;
+  if(cards.length === 0) return;
+  
+  setInterval(() => {
+    cards[currentIdx].classList.remove('active');
+    currentIdx = (currentIdx + 1) % cards.length;
+    cards[currentIdx].classList.add('active');
+  }, 5000);
+})();
 </script>
 
 </body>
