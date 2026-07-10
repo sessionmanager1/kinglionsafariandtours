@@ -373,9 +373,9 @@
     color:rgba(255,255,255,.75); font-family:'Space Mono',monospace; font-size:.8rem; letter-spacing:.1em;
   }
 
-  /* ---------- FLOATING REVIEWS CONTAINER ---------- */
+  /* ---------- REVIEWS CONTAINER ---------- */
   .reviews-section {
-    padding: 5.5rem 1.5rem;
+    padding: 5.5rem 1.5rem 2.5rem;
     background: var(--white);
     overflow: hidden;
   }
@@ -426,6 +426,101 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--charcoal-70);
+  }
+
+  /* ---------- LEAVE A REVIEW FORM ---------- */
+  .review-form-section {
+    padding: 1rem 1.5rem 5.5rem;
+    background: var(--white);
+  }
+  .review-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--ivory);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+  }
+  .review-form-container h3 {
+    font-size: 1.5rem;
+    color: var(--red-deep);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  .review-form-container p {
+    font-size: 0.88rem;
+    color: var(--charcoal-70);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  .form-group label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+    color: var(--charcoal);
+  }
+  .rating-select {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: rgba(36,26,21,.2);
+  }
+  .rating-star.selected, .rating-star:hover, .rating-star.hovered {
+    color: var(--red-bright);
+  }
+  .form-control {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    background: var(--white);
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .form-control:focus {
+    border-color: var(--red-bright);
+  }
+  textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .submit-review-btn {
+    width: 100%;
+    border: none;
+    background: var(--red-deep);
+    color: var(--white);
+    padding: 0.9rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(20,48,31,.2);
+    transition: background 0.2s ease, transform 0.18s ease;
+  }
+  .submit-review-btn:hover {
+    background: #1e442d;
+    transform: translateY(-2px);
+  }
+  .success-msg {
+    display: none;
+    text-align: center;
+    background: rgba(37, 211, 102, 0.15);
+    color: #1b7339;
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 1rem;
   }
 
   /* ---------- CTA STRIP ---------- */
@@ -989,7 +1084,7 @@
       <h2>What Our Adventurers Say</h2>
       <p>Real stories from travelers who explored the wild with us.</p>
     </div>
-    <div class="reviews-wrapper">
+    <div class="reviews-wrapper" id="reviewsWrapper">
       <div class="review-card active">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"An absolutely magical trip. Watching the great migration cross the river with guides who knew exactly where to park was a memory we will hold onto forever."</p>
@@ -1010,6 +1105,38 @@
         <p class="review-text">"Stepping into the living Maasai homestead gave us an unforgettable context to the landscape. A beautiful, respectful, and genuine community visit."</p>
         <div class="review-author">— Chloe &amp; Pierre, France</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAVE A REVIEW FORM SECTION -->
+<section class="review-form-section">
+  <div class="section-inner reveal">
+    <div class="review-form-container">
+      <h3>Share Your Adventure</h3>
+      <p>Have you traveled with Africa Pearls Adventures? Leave your review below to be featured on our wall!</p>
+      <form id="addReviewForm">
+        <div class="form-group">
+          <label>Your Rating</label>
+          <div class="rating-select" id="ratingSelect">
+            <span class="rating-star" data-value="1">★</span>
+            <span class="rating-star" data-value="2">★</span>
+            <span class="rating-star" data-value="3">★</span>
+            <span class="rating-star" data-value="4">★</span>
+            <span class="rating-star selected" data-value="5">★</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="revText">Your Review</label>
+          <textarea class="form-control" id="revText" placeholder="Describe your experience with our guides, vehicles, or spots..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="revAuthor">Your Name &amp; Country</label>
+          <input type="text" class="form-control" id="revAuthor" placeholder="e.g., John Smith, Canada" required>
+        </div>
+        <button type="submit" class="submit-review-btn">Submit Review</button>
+        <div class="success-msg" id="successMsg">Thank you! Your review has been added successfully to our board.</div>
+      </form>
     </div>
   </div>
 </section>
@@ -1393,17 +1520,80 @@ galleryImages.forEach((item, i) => {
 });
 
 /* ---------- Floating Reviews Engine ---------- */
-(function() {
+let currentReviewIdx = 0;
+let reviewCycleInterval = null;
+
+function runReviewCycle() {
   const cards = document.querySelectorAll('.review-card');
-  let currentIdx = 0;
-  if(cards.length === 0) return;
+  if(cards.length <= 1) return;
   
-  setInterval(() => {
-    cards[currentIdx].classList.remove('active');
-    currentIdx = (currentIdx + 1) % cards.length;
-    cards[currentIdx].classList.add('active');
+  clearInterval(reviewCycleInterval);
+  reviewCycleInterval = setInterval(() => {
+    const updatedCards = document.querySelectorAll('.review-card');
+    updatedCards[currentReviewIdx].classList.remove('active');
+    currentReviewIdx = (currentReviewIdx + 1) % updatedCards.length;
+    updatedCards[currentReviewIdx].classList.add('active');
   }, 5000);
-})();
+}
+runReviewCycle();
+
+/* ---------- Review Form System ---------- */
+const ratingSelect = document.getElementById('ratingSelect');
+const stars = ratingSelect.querySelectorAll('.rating-star');
+let chosenRating = 5;
+
+stars.forEach(star => {
+  star.addEventListener('mouseover', () => {
+    const val = parseInt(star.dataset.value, 10);
+    stars.forEach(s => {
+      if(parseInt(s.dataset.value, 10) <= val) s.classList.add('hovered');
+      else s.classList.remove('hovered');
+    });
+  });
+  
+  star.addEventListener('mouseout', () => {
+    stars.forEach(s => s.classList.remove('hovered'));
+  });
+  
+  star.addEventListener('click', () => {
+    chosenRating = parseInt(star.dataset.value, 10);
+    stars.forEach(s => {
+      if(parseInt(s.dataset.value, 10) <= chosenRating) s.classList.add('selected');
+      else s.classList.remove('selected');
+    });
+  });
+});
+
+document.getElementById('addReviewForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const text = document.getElementById('revText').value;
+  const author = document.getElementById('revAuthor').value;
+  const wrapper = document.getElementById('reviewsWrapper');
+  
+  let starStr = '';
+  for(let i=0; i<chosenRating; i++) { starStr += '★'; }
+  
+  const newCard = document.createElement('div');
+  newCard.className = 'review-card';
+  newCard.innerHTML = `
+    <div class="review-stars">${starStr}</div>
+    <p class="review-text">"${text}"</p>
+    <div class="review-author">— ${author}</div>
+  `;
+  
+  wrapper.appendChild(newCard);
+  
+  document.getElementById('addReviewForm').reset();
+  chosenRating = 5;
+  stars.forEach(s => s.classList.add('selected'));
+  
+  const successMsg = document.getElementById('successMsg');
+  successMsg.style.display = 'block';
+  setTimeout(() => { successMsg.style.display = 'none'; }, 4000);
+  
+  runReviewCycle();
+});
 </script>
 
 </body>
